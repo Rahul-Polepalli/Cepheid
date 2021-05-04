@@ -2,6 +2,7 @@ package com.cepheid.cloud.skel.controller;
 
 import java.util.Collection;
 
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cepheid.cloud.skel.model.Item;
 import com.cepheid.cloud.skel.repository.ItemRepository;
+import com.cepheid.cloud.skel.service.ItemService;
 
 import io.swagger.annotations.Api;
 // curl http:/localhost:9443/app/api/1.0/items
@@ -25,6 +27,9 @@ import io.swagger.annotations.Api;
 public class ItemController {
 
 	private final ItemRepository mItemRepository;
+	
+	@Autowired
+	private ItemService itemService;
 
 	@Autowired
 	public ItemController(ItemRepository itemRepository) {
@@ -36,7 +41,7 @@ public class ItemController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	public Collection<Item> getItems() {
-		return mItemRepository.findAll();
+		return itemService.getAllItems();
 	}
 
 	@GET
@@ -44,7 +49,7 @@ public class ItemController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	public Collection<Item> getItemsByName(@QueryParam("name") String name) {
-		return mItemRepository.findByName(name);
+		return itemService.getItemsByName(name);
 	}
 
 }

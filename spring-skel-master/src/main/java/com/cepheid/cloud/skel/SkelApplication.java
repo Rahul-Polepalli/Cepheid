@@ -27,11 +27,17 @@ public class SkelApplication {
   @Bean
   ApplicationRunner initItems(ItemRepository repository) {
 	  Item item = new Item("Iphone", "KA");
-	  List<Description> descriptionList = new ArrayList<>();
-	  Description description = new Description("Indian Model");
-	  descriptionList.add(description);
+	  Description description = new Description("US Model");
+	  List<Description> descriptionList = Arrays.asList(description);
 	  item.setDescriptions(descriptionList);
+	  
+	  Item onItem = new Item("OnePlus", "AP");
+	  Description onDescription = new Description("Indian Model");
+	  List<Description> descriptions = Arrays.asList(onDescription);
+	  item.setDescriptions(descriptions);
+	  
 	  repository.save(item);
+	  repository.save(onItem);
     return args -> {
       repository.findAll().forEach(System.out::println);
     };

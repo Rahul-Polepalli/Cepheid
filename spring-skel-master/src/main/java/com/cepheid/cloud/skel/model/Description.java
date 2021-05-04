@@ -2,6 +2,7 @@ package com.cepheid.cloud.skel.model;
 
 import javax.persistence.CascadeType;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 
 @Entity
 public class Description {
@@ -21,8 +23,8 @@ public class Description {
 	@Column
 	private String description;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id", referencedColumnName="mId")
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "item_id"))
 	private Item item;
 
 	public Description() {
