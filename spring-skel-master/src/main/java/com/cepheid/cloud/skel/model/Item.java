@@ -27,8 +27,7 @@ public class Item extends AbstractEntity {
 	public Item() {
 	}
 
-	public Item(Long mId, String name, String state) {
-		this.mId = mId;
+	public Item(String name, String state) {
 		this.name = name;
 		this.state = state;
 	}

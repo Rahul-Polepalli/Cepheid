@@ -26,9 +26,9 @@ public class SkelApplication {
 
   @Bean
   ApplicationRunner initItems(ItemRepository repository) {
-	  Item item = new Item(1L, "Iphone", "KA");
+	  Item item = new Item("Iphone", "KA");
 	  List<Description> descriptionList = new ArrayList<>();
-	  Description description = new Description(1L, "Indian Model");
+	  Description description = new Description("Indian Model");
 	  descriptionList.add(description);
 	  item.setDescriptions(descriptionList);
 	  repository.save(item);

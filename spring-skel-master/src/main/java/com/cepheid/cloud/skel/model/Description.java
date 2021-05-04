@@ -28,8 +28,7 @@ public class Description {
 	public Description() {
 	}
 
-	public Description(Long descId, String description) {
-		this.descId = descId;
+	public Description(String description) {
 		this.description = description;
 	}
 
